@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           ),
         ),
-        title: 'Flutter Demo1',
+        title: 'Flutter Demo2',
         theme: ThemeData(
           textTheme: TextTheme(
             labelSmall: GoogleFonts.montserrat(
