@@ -1,4 +1,4 @@
-import 'package:al_nuim/View/otp_verification.dart';
+import 'package:al_nuim/view/otp_verification.dart';
 import 'package:al_nuim/controller/signin_controller.dart';
 import 'package:al_nuim/utility/appTheme.dart';
 import 'package:al_nuim/utility/common_textfield.dart';
@@ -71,6 +71,11 @@ class _SigninScreenState extends State<SigninScreen> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter some details';
+                              } else if (value.length < 10) {
+                                return "Please enter valid number";
+                              } else if (RegExp("[A-Z]{5}[0-9]{4}[A-Z]{1}")
+                                  .hasMatch(value)) {
+                                return "Please enter valid pan number";
                               }
                               return null;
                             },

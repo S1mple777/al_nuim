@@ -1,6 +1,6 @@
-import 'package:al_nuim/View/splash_screen.dart';
+import 'package:al_nuim/view/dashboard_screen.dart';
+import 'package:al_nuim/controller/dashboard_controller.dart';
 import 'package:al_nuim/controller/signin_controller.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -18,15 +18,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
+      // builder: ,
       providers: [
         ChangeNotifierProvider(create: (_) => SignInController()),
+        ChangeNotifierProvider(create: (_) => DashBoardController()),
       ],
       child: MaterialApp(
         builder: EasyLoading.init(
           builder: (context, child) => MediaQuery(
-            data: MediaQuery.of(context)
-                .copyWith(), //set desired text scale factor here
-            child: child!,
+            data: MediaQuery.of(context).copyWith(),
+            child: ScrollConfiguration(
+              behavior: MyBehavior(),
+              child: child!,
+            ),
           ),
         ),
         title: 'Flutter Demo3',
@@ -55,8 +59,16 @@ class MyApp extends StatelessWidget {
               seedColor: const Color.fromARGB(255, 182, 151, 79)),
           useMaterial3: true,
         ),
-        home: const SplashScreen(),
+        home: const DashBoard(),
       ),
     );
+  }
+}
+
+class MyBehavior extends ScrollBehavior {
+  @override
+  Widget buildOverscrollIndicator(
+      BuildContext context, Widget child, ScrollableDetails details) {
+    return child;
   }
 }
