@@ -77,10 +77,10 @@ class _SigninScreenState extends State<SigninScreen> {
                               // Handle text changes
                             },
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some details';
-                              } else if (!nameRegExp.hasMatch(value)) {
-                                return "Enter Valid Comapny Name";
+                              if (value == null ||
+                                  value.isEmpty ||
+                                  !nameRegExp.hasMatch(value)) {
+                                return "Please Enter Comapny Name";
                               } else {
                                 return null;
                               }
@@ -106,10 +106,10 @@ class _SigninScreenState extends State<SigninScreen> {
                               // Handle text changes
                             },
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some details';
-                              } else if (!emailRegExp.hasMatch(value)) {
-                                return "Enter Valid Email Address";
+                              if (value == null ||
+                                  value.isEmpty ||
+                                  !emailRegExp.hasMatch(value)) {
+                                return "Please Enter Email Address";
                               } else {
                                 return null;
                               }
@@ -139,10 +139,10 @@ class _SigninScreenState extends State<SigninScreen> {
                               // Handle text changes
                             },
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some details';
-                              } else if (!gstRegExp.hasMatch(value)) {
-                                return "Enter Correct Gst number";
+                              if (value == null ||
+                                  value.isEmpty ||
+                                  !gstRegExp.hasMatch(value)) {
+                                return "Please Enter Gst number";
                               } else {
                                 return null;
                               }
@@ -172,10 +172,10 @@ class _SigninScreenState extends State<SigninScreen> {
                               // Handle text changes
                             },
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some details';
-                              } else if (!panRegExp.hasMatch(value)) {
-                                return "Enter Correct Pan number";
+                              if (value == null ||
+                                  value.isEmpty ||
+                                  !panRegExp.hasMatch(value)) {
+                                return "Please Enter Pan number";
                               } else {
                                 return null;
                               }
@@ -206,10 +206,10 @@ class _SigninScreenState extends State<SigninScreen> {
                               // Handle text changes
                             },
                             validator: (value) {
-                              if (value == null || value.isEmpty) {
-                                return 'Please enter some details';
-                              } else if (!mobilenoRegExp.hasMatch(value)) {
-                                return "Enter Correct Mobile number";
+                              if (value == null ||
+                                  value.isEmpty ||
+                                  !mobilenoRegExp.hasMatch(value)) {
+                                return "Please Enter Mobile number";
                               } else {
                                 return null;
                               }
@@ -270,7 +270,7 @@ class _SigninScreenState extends State<SigninScreen> {
                                 Expanded(
                                     child: Padding(
                                   padding: const EdgeInsets.only(
-                                      bottom: 6.0, top: 6),
+                                      bottom: 4.0, top: 3),
                                   child: TextFormField(
                                     controller: context
                                         .watch<SignInController>()

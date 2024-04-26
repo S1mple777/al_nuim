@@ -19,6 +19,7 @@ class _DashBoardState extends State<DashBoard> {
     return DefaultTabController(
       length: context.watch<DashBoardController>().homeList.length,
       child: SafeArea(
+        bottom: false,
         child: Scaffold(
           bottomNavigationBar: Material(
             elevation: 5,
