@@ -132,6 +132,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             controller: context
                                 .watch<SignInController>()
                                 .gestNum, // If you need to control the text field programmatically
+                            countertext: "",
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0,
                                 horizontal: 12.0), // Custom content padding
@@ -165,6 +166,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             controller: context
                                 .watch<SignInController>()
                                 .panNum, // If you need to control the text field programmatically
+                            countertext: "",
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0,
                                 horizontal: 12.0), // Custom content padding
@@ -186,9 +188,9 @@ class _SigninScreenState extends State<SigninScreen> {
                           ),
                           CommonTextFormField(
                             labelText: "Mobile Number",
-
                             maxLength: 10,
                             keyboardType: TextInputType.text,
+
                             labelStyle: Theme.of(context)
                                 .textTheme
                                 .bodySmall!
@@ -199,6 +201,36 @@ class _SigninScreenState extends State<SigninScreen> {
                             controller: context
                                 .watch<SignInController>()
                                 .mobileController, // If you need to control the text field programmatically
+                            countertext: "",
+                            suffixIcon: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(
+                                  Icons.check_circle,
+                                  color: Color(0xff1C8038),
+                                  size: 16,
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                InkWell(
+                                  onTap: () {},
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(right: 15),
+                                    child: Text("verify",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displaySmall!
+                                            .copyWith(
+                                              color: Color(0xff7A7A7A),
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.w700,
+                                            )),
+                                  ),
+                                ),
+                              ],
+                            ),
+
                             contentPadding: const EdgeInsets.symmetric(
                                 vertical: 16.0,
                                 horizontal: 12.0), // Custom content padding
@@ -353,7 +385,7 @@ class _SigninScreenState extends State<SigninScreen> {
                         text: TextSpan(children: [
                       TextSpan(
                         text: !context.watch<SignInController>().isSignin
-                            ? "Already register?"
+                            ? "Already registered?"
                             : "not yet registered?",
                         style: Theme.of(context)
                             .textTheme
@@ -384,12 +416,12 @@ class _SigninScreenState extends State<SigninScreen> {
                 ),
                 Center(
                   child: Container(
-                    height: 40,
+                    height: 50,
                     width: 240,
                     decoration: BoxDecoration(
                       border: Border.all(
                           color: const Color.fromARGB(255, 210, 210, 210)),
-                      borderRadius: const BorderRadius.all(Radius.circular(20)),
+                      borderRadius: const BorderRadius.all(Radius.circular(40)),
                       // color: const Color.fromARGB(255, 210, 210, 210)
                     ),
                     child: Padding(
