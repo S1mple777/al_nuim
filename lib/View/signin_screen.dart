@@ -1,4 +1,4 @@
-import 'package:al_nuim/View/otp_verification.dart';
+import 'package:al_nuim/view/otp_verification.dart';
 import 'package:al_nuim/controller/signin_controller.dart';
 import 'package:al_nuim/utility/appTheme.dart';
 import 'package:al_nuim/utility/common_textfield.dart';
@@ -16,6 +16,14 @@ class SigninScreen extends StatefulWidget {
 }
 
 class _SigninScreenState extends State<SigninScreen> {
+  final RegExp nameRegExp = RegExp("[a-zA-Z]");
+  final RegExp emailRegExp = RegExp(
+      r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
+  final RegExp gstRegExp = RegExp("^[0-9]{2}[A-Z]{5}"
+      "[0-9]{4}[A-Z]{1}["
+      "1-9A-Z]{1}Z[0-9A-Z]{1}");
+  final RegExp panRegExp = RegExp(r'^[A-Z]{5}[0-9]{4}[A-Z]{1}$');
+  final RegExp mobilenoRegExp = RegExp(r'^(?:[+0][1-9])?[0-9]{10,12}$');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,7 +34,7 @@ class _SigninScreenState extends State<SigninScreen> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.only(
-                left: 40.0, right: 40, top: 45, bottom: 45),
+                left: 40.0, right: 40, top: 20, bottom: 45),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -71,16 +79,49 @@ class _SigninScreenState extends State<SigninScreen> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter some details';
+                              } else if (!nameRegExp.hasMatch(value)) {
+                                return "Enter Valid Comapny Name";
+                              } else {
+                                return null;
                               }
-                              return null;
                             },
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 15,
                           ),
                           CommonTextFormField(
-                            labelText: "Gst Number",
+                            labelText: "Email Address",
+                            keyboardType: TextInputType.emailAddress,
+                            labelStyle: Theme.of(context)
+                                .textTheme
+                                .bodySmall!
+                                .copyWith(
+                                    color: AppColor.mediumBlack, fontSize: 16),
+                            controller: context
+                                .watch<SignInController>()
+                                .emailController,
+                            contentPadding: const EdgeInsets.symmetric(
+                                vertical: 16.0, horizontal: 12.0),
+                            onChanged: (value) {
+                              // Handle text changes
+                            },
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some details';
+                              } else if (!emailRegExp.hasMatch(value)) {
+                                return "Enter Valid Email Address";
+                              } else {
+                                return null;
+                              }
+                            },
+                          ),
+                          const SizedBox(
+                            height: 15,
+                          ),
+                          CommonTextFormField(
+                            labelText: "Gst number",
                             keyboardType: TextInputType.text,
+                            maxLength: 15,
                             labelStyle: Theme.of(context)
                                 .textTheme
                                 .bodySmall!
@@ -100,16 +141,20 @@ class _SigninScreenState extends State<SigninScreen> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter some details';
+                              } else if (!gstRegExp.hasMatch(value)) {
+                                return "Enter Correct Gst number";
+                              } else {
+                                return null;
                               }
-                              return null;
                             },
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 15,
                           ),
                           CommonTextFormField(
-                            labelText: "Pan Number",
+                            labelText: "Pan number",
                             keyboardType: TextInputType.text,
+                            maxLength: 10,
                             labelStyle: Theme.of(context)
                                 .textTheme
                                 .bodySmall!
@@ -129,15 +174,20 @@ class _SigninScreenState extends State<SigninScreen> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter some details';
-                              } else {}
-                              return null;
+                              } else if (!panRegExp.hasMatch(value)) {
+                                return "Enter Correct Pan number";
+                              } else {
+                                return null;
+                              }
                             },
                           ),
                           const SizedBox(
-                            height: 20,
+                            height: 15,
                           ),
                           CommonTextFormField(
                             labelText: "Mobile Number",
+
+                            maxLength: 10,
                             keyboardType: TextInputType.text,
                             labelStyle: Theme.of(context)
                                 .textTheme
@@ -158,8 +208,11 @@ class _SigninScreenState extends State<SigninScreen> {
                             validator: (value) {
                               if (value == null || value.isEmpty) {
                                 return 'Please enter some details';
+                              } else if (!mobilenoRegExp.hasMatch(value)) {
+                                return "Enter Correct Mobile number";
+                              } else {
+                                return null;
                               }
-                              return null;
                             },
                           ),
                         ],
@@ -177,14 +230,14 @@ class _SigninScreenState extends State<SigninScreen> {
                                   .copyWith(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 16,
-                                      color: AppColor.mediumBlack),
+                                      color: AppColor.lightGreyTextColor),
                             ),
                           ),
                           const SizedBox(
                             height: 10,
                           ),
                           Container(
-                            height: 47,
+                            height: 45,
                             width: double.infinity,
                             decoration: BoxDecoration(
                                 border:
@@ -195,22 +248,29 @@ class _SigninScreenState extends State<SigninScreen> {
                                 const SizedBox(
                                   width: 2,
                                 ),
-                                Text(
-                                  "+91",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .displaySmall!
-                                      .copyWith(
-                                          color: AppColor.lightGreycolor,
-                                          fontSize: 18),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 5),
+                                  child: Text(
+                                    "+91",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .displaySmall!
+                                        .copyWith(
+                                            color: Color(0xff272727)
+                                                .withOpacity(0.5),
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w200),
+                                  ),
                                 ),
                                 const VerticalDivider(
-                                  endIndent: 10,
-                                  indent: 10,
+                                  endIndent: 6,
+                                  indent: 6,
+                                  color: Color.fromRGBO(210, 210, 210, 0.82),
                                 ),
                                 Expanded(
                                     child: Padding(
-                                  padding: const EdgeInsets.only(bottom: 6.0),
+                                  padding: const EdgeInsets.only(
+                                      bottom: 6.0, top: 6),
                                   child: TextFormField(
                                     controller: context
                                         .watch<SignInController>()
@@ -232,7 +292,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   height: 30,
                 ),
                 SizedBox(
-                  height: 40,
+                  height: 49,
                   width: double.infinity,
                   child: ElevatedButton(
                       style: Theme.of(context)
@@ -242,7 +302,7 @@ class _SigninScreenState extends State<SigninScreen> {
                               shape: MaterialStatePropertyAll<OutlinedBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius:
-                                          BorderRadius.circular(20)))),
+                                          BorderRadius.circular(40)))),
                       onPressed: !context.read<SignInController>().isSignin
                           ? () {
                               if (context
@@ -280,6 +340,9 @@ class _SigninScreenState extends State<SigninScreen> {
                       )),
                 ),
                 InkWell(
+                  focusColor: Colors.transparent,
+                  splashColor: Colors.transparent,
+                  highlightColor: Colors.transparent,
                   onTap: () {
                     context.read<SignInController>().onSigninToggle();
                   },
@@ -291,14 +354,14 @@ class _SigninScreenState extends State<SigninScreen> {
                       TextSpan(
                         text: !context.watch<SignInController>().isSignin
                             ? "Already register?"
-                            : "not yet register?",
+                            : "not yet registered?",
                         style: Theme.of(context)
                             .textTheme
                             .displaySmall!
                             .copyWith(
                                 fontSize: 13,
                                 color: Colors.black,
-                                fontWeight: FontWeight.w400),
+                                fontWeight: FontWeight.w500),
                       ),
                       TextSpan(
                         text: !context.watch<SignInController>().isSignin
@@ -308,6 +371,7 @@ class _SigninScreenState extends State<SigninScreen> {
                             .textTheme
                             .displaySmall!
                             .copyWith(
+                                backgroundColor: Colors.transparent,
                                 fontSize: 14,
                                 color: Colors.black,
                                 fontWeight: FontWeight.bold),
@@ -316,7 +380,7 @@ class _SigninScreenState extends State<SigninScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 60,
+                  height: 80,
                 ),
                 Center(
                   child: Container(
@@ -330,25 +394,29 @@ class _SigninScreenState extends State<SigninScreen> {
                     ),
                     child: Padding(
                       padding: const EdgeInsets.only(
-                          left: 10.0, right: 10, top: 5, bottom: 5),
+                          left: 20.0, right: 10, top: 5, bottom: 5),
                       child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Image.asset(
                             "assets/images/google_logo.png",
-                            height: 24,
-                            width: 24,
+                            height: 20,
+                            width: 20,
                           ),
                           const SizedBox(
-                            width: 5,
+                            width: 0,
                           ),
-                          Text(
-                            "Continue With Google",
-                            style: Theme.of(context)
-                                .textTheme
-                                .displaySmall!
-                                .copyWith(
-                                    color: Colors.black,
-                                    fontWeight: FontWeight.w500),
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Text(
+                              "Continue With Google",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .displaySmall!
+                                  .copyWith(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
+                            ),
                           )
                         ],
                       ),

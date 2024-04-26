@@ -8,6 +8,7 @@ class SignInController extends ChangeNotifier {
   final mobileController = TextEditingController();
 
   final companyController = TextEditingController();
+  final emailController = TextEditingController();
   final gestNum = TextEditingController();
   final panNum = TextEditingController();
 

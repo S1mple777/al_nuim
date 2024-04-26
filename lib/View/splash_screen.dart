@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:al_nuim/View/signin_screen.dart';
+import 'package:al_nuim/view/signin_screen.dart';
 import 'package:al_nuim/utility/string_ext.dart';
 import 'package:flutter/material.dart';
 

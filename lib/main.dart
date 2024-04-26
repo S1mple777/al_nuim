@@ -1,4 +1,4 @@
-import 'package:al_nuim/View/splash_screen.dart';
+import 'package:al_nuim/view/splash_screen.dart';
 import 'package:al_nuim/controller/signin_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
             child: child!,
           ),
         ),
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo3',
         theme: ThemeData(
           textTheme: TextTheme(
@@ -43,13 +44,16 @@ class MyApp extends StatelessWidget {
               fontSize: 18,
             ),
             displaySmall: GoogleFonts.manrope(
-                fontWeight: FontWeight.w500, fontSize: 16, color: Colors.white),
+                // fontWeight: FontWeight.w300,
+                fontSize: 16,
+                color: Colors.white),
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
               style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12)),
-                  backgroundColor: const Color.fromARGB(255, 182, 151, 79))),
+            shape:
+                RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            backgroundColor: Color.fromRGBO(182, 151, 79, 1),
+          )),
           primaryColor: const Color.fromARGB(255, 182, 151, 79),
           colorScheme: ColorScheme.fromSeed(
               seedColor: const Color.fromARGB(255, 182, 151, 79)),

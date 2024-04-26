@@ -48,15 +48,13 @@ class CommonTextFormField extends StatelessWidget {
       decoration: InputDecoration(
         labelText: labelText,
         hintText: hintText,
-        labelStyle: Theme.of(context)
-            .textTheme
-            .displaySmall!
-            .copyWith(color: AppColor.mediumBlack, fontWeight: FontWeight.w100),
+        labelStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
+            color: Colors.black.withOpacity(0.5), fontWeight: FontWeight.w100),
         hintStyle: hintStyle,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         filled: true,
-        fillColor: Colors.grey[200],
+        fillColor: AppColor.lightGreycolor.withOpacity(0.2),
         contentPadding: contentPadding ??
             const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
         focusedBorder: OutlineInputBorder(

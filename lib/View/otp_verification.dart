@@ -4,6 +4,9 @@ import 'package:al_nuim/utility/common_widget.dart';
 import 'package:al_nuim/utility/size_config.dart';
 import 'package:al_nuim/utility/string_ext.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../controller/signin_controller.dart';
 
 class OtpVerification extends StatefulWidget {
   const OtpVerification({Key? key}) : super(key: key);
@@ -47,19 +50,30 @@ class _OtpVerificationState extends State<OtpVerification> {
                 ),
                 vSize(10),
                 Align(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    textAlign: TextAlign.left,
-                    "Enter the OTP sent to ",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelSmall!
-                        .copyWith(color: AppColor.mediumBlack),
-                  ),
-                ),
+                    alignment: Alignment.centerLeft,
+                    child: RichText(
+                        text: TextSpan(children: [
+                      TextSpan(
+                          text: "Enter the OTP sent to",
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall!
+                              .copyWith(
+                                  letterSpacing: 1,
+                                  color: AppColor.mediumBlack)),
+                      TextSpan(
+                          text:
+                              "  +91 ${context.watch<SignInController>().mobileController.text}",
+                          style: Theme.of(context)
+                              .textTheme
+                              .displaySmall!
+                              .copyWith(
+                                  color: Color.fromRGBO(58, 58, 58, 1),
+                                  fontWeight: FontWeight.w900))
+                    ]))),
                 vSize(25),
                 const CommonTextFormField(
-                  labelText: "Enter otp",
+                  labelText: "Enter OTP",
                   maxLength: 4,
                 ),
                 vSize(10),
@@ -79,7 +93,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                 ),
                 vSize(10),
                 SizedBox(
-                  height: 40,
+                  height: 49,
                   width: double.infinity,
                   child: ElevatedButton(
                       style: Theme.of(context)
@@ -89,7 +103,7 @@ class _OtpVerificationState extends State<OtpVerification> {
                               shape: MaterialStatePropertyAll<OutlinedBorder>(
                                   RoundedRectangleBorder(
                                       borderRadius:
-                                          BorderRadius.circular(20)))),
+                                          BorderRadius.circular(40)))),
                       onPressed: () {},
                       child: Text(
                         "Continue",
