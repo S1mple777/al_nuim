@@ -14,12 +14,17 @@ class CommonTextFormField extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final FormFieldValidator<String>? validator;
   final ValueChanged<String>? onChanged;
-
+  final dynamic? radius;
   final int? maxLength;
+  final Color? colors;
+  final bool? fillColor;
 
   const CommonTextFormField({
     Key? key,
     required this.labelText,
+    this.radius,
+    this.fillColor,
+    this.colors,
     this.hintText,
     this.controller,
     this.maxLength,
@@ -37,6 +42,7 @@ class CommonTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      cursorHeight: 16,
       maxLength: maxLength,
       controller: controller,
       keyboardType: keyboardType,
@@ -46,6 +52,8 @@ class CommonTextFormField extends StatelessWidget {
           .bodyLarge!
           .copyWith(fontWeight: FontWeight.normal, fontSize: 18),
       decoration: InputDecoration(
+        floatingLabelStyle:
+            TextStyle(color: Theme.of(context).primaryColor, fontSize: 16),
         labelText: labelText,
         hintText: hintText,
         labelStyle: Theme.of(context).textTheme.displaySmall!.copyWith(
@@ -53,62 +61,29 @@ class CommonTextFormField extends StatelessWidget {
         hintStyle: hintStyle,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
-        filled: true,
+        // filled: true,
         fillColor: AppColor.lightGreycolor.withOpacity(0.2),
+        filled: fillColor ?? true,
+        // fillColor: Colors.grey[200],
         contentPadding: contentPadding ??
             const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
         focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(color: AppColor.lightGreycolor)),
+            borderRadius: BorderRadius.circular(radius ?? 8.0),
+            borderSide:
+                BorderSide(color: this.colors ?? AppColor.lightGreycolor)),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(radius ?? 8.0),
           borderSide: BorderSide(
-              color: AppColor.lightGreycolor), // Default border color
+              color: this.colors ??
+                  AppColor.lightGreycolor), // Default border color
         ),
         border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8.0),
-            borderSide: BorderSide(color: AppColor.lightGreycolor)),
+            borderRadius: BorderRadius.circular(radius ?? 8.0),
+            borderSide:
+                BorderSide(color: this.colors ?? AppColor.lightGreycolor)),
       ),
       validator: validator,
       onChanged: onChanged,
     );
   }
 }
-
-
-// TextFormField(
-//       controller: controller,
-//       keyboardType: keyboardType,
-//       obscureText: obscureText,
-//       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-//             fontWeight: FontWeight.normal,
-//           ),
-//       decoration: InputDecoration(
-//         labelText: labelText,
-//         hintText: hintText,
-//         labelStyle: Theme.of(context)
-//             .textTheme
-//             .displaySmall!
-//             .copyWith(color: AppColor.mediumBlack, fontWeight: FontWeight.w100),
-//         hintStyle: hintStyle,
-//         prefixIcon: prefixIcon,
-//         suffixIcon: suffixIcon,
-//         filled: true,
-//         fillColor: Colors.grey[200],
-//         contentPadding: contentPadding ??
-//             const EdgeInsets.symmetric(vertical: 16.0, horizontal: 12.0),
-//         focusedBorder: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(8.0),
-//             borderSide: BorderSide(color: AppColor.lightGreycolor)),
-//         enabledBorder: OutlineInputBorder(
-//           borderRadius: BorderRadius.circular(8.0),
-//           borderSide: BorderSide(
-//               color: AppColor.lightGreycolor), // Default border color
-//         ),
-//         border: OutlineInputBorder(
-//             borderRadius: BorderRadius.circular(8.0),
-//             borderSide: BorderSide(color: AppColor.lightGreycolor)),
-//       ),
-//       validator: validator,
-//       onChanged: onChanged,
-//     );
