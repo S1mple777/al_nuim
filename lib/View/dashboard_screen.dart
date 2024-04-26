@@ -59,6 +59,7 @@ class _DashBoardState extends State<DashBoard> {
             ),
           ),
           appBar: AppBar(
+            automaticallyImplyLeading: false,
             centerTitle: false,
             title: Image.asset(
               "al_nuim".png,
@@ -89,11 +90,6 @@ class _DashBoardState extends State<DashBoard> {
                     radius: 20.0,
                     colors: Theme.of(context).primaryColor,
                   ),
-                ),
-              ),
-              Expanded(
-                child: ListView(
-                  children: [],
                 ),
               ),
             ],

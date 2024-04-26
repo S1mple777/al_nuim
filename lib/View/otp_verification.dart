@@ -3,6 +3,7 @@ import 'package:al_nuim/utility/common_textfield.dart';
 import 'package:al_nuim/utility/common_widget.dart';
 import 'package:al_nuim/utility/size_config.dart';
 import 'package:al_nuim/utility/string_ext.dart';
+import 'package:al_nuim/view/dashboard_screen.dart';
 import 'package:flutter/material.dart';
 
 class OtpVerification extends StatefulWidget {
@@ -90,7 +91,12 @@ class _OtpVerificationState extends State<OtpVerification> {
                                   RoundedRectangleBorder(
                                       borderRadius:
                                           BorderRadius.circular(20)))),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DashBoard()));
+                      },
                       child: Text(
                         "Continue",
                         style: Theme.of(context).textTheme.displaySmall,

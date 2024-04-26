@@ -1,3 +1,4 @@
+import 'package:al_nuim/View/signin_screen.dart';
 import 'package:al_nuim/view/dashboard_screen.dart';
 import 'package:al_nuim/controller/dashboard_controller.dart';
 import 'package:al_nuim/controller/signin_controller.dart';
@@ -59,7 +60,7 @@ class MyApp extends StatelessWidget {
               seedColor: const Color.fromARGB(255, 182, 151, 79)),
           useMaterial3: true,
         ),
-        home: const DashBoard(),
+        home: const SigninScreen(),
       ),
     );
   }
