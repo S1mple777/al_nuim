@@ -1,3 +1,4 @@
+import 'package:al_nuim/controller/profile_controller.dart';
 import 'package:al_nuim/view/splash_screen.dart';
 import 'package:al_nuim/View/signin_screen.dart';
 import 'package:al_nuim/view/dashboard_screen.dart';
@@ -7,6 +8,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+
+import 'view/add_address_screen.dart';
+import 'view/address_screen.dart';
+import 'view/profile_screen.dart';
 
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +29,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => SignInController()),
         ChangeNotifierProvider(create: (_) => DashBoardController()),
+        ChangeNotifierProvider(create: (_) => ProfileController()),
       ],
       child: MaterialApp(
         builder: EasyLoading.init(
@@ -65,7 +71,7 @@ class MyApp extends StatelessWidget {
               seedColor: const Color.fromARGB(255, 182, 151, 79)),
           useMaterial3: true,
         ),
-        home: const SigninScreen(),
+        home: const ProfileScreen(),
       ),
     );
   }
