@@ -24,6 +24,7 @@ class _DashBoardState extends State<DashBoard> {
           bottomNavigationBar: Material(
             elevation: 5,
             child: Container(
+              padding: EdgeInsets.all(5),
               decoration: BoxDecoration(
                   color: Colors.white,
                   boxShadow: [BoxShadow(color: Colors.black)]),
