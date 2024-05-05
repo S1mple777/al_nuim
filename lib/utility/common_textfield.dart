@@ -10,6 +10,7 @@ class CommonTextFormField extends StatelessWidget {
   final TextStyle? labelStyle;
   final TextStyle? hintStyle;
   final Widget? prefixIcon;
+  final String? countertext;
   final Widget? suffixIcon;
   final EdgeInsetsGeometry? contentPadding;
   final FormFieldValidator<String>? validator;
@@ -37,6 +38,7 @@ class CommonTextFormField extends StatelessWidget {
     this.contentPadding,
     this.validator,
     this.onChanged,
+    this.countertext,
   }) : super(key: key);
 
   @override
@@ -61,6 +63,7 @@ class CommonTextFormField extends StatelessWidget {
         hintStyle: hintStyle,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
+        counterText: countertext,
         // filled: true,
         fillColor: AppColor.lightGreycolor.withOpacity(0.2),
         filled: fillColor ?? true,

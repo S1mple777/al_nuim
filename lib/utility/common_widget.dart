@@ -27,3 +27,37 @@ class CommonWidget {
     );
   }
 }
+
+class CommonTextButtons {
+  static Widget commonTextbuttons(
+    BuildContext context, {
+    required String text,
+    required TextStyle textstyle,
+  }) {
+    return TextButton(
+        onPressed: () {},
+        style: ButtonStyle(
+          padding: MaterialStatePropertyAll(EdgeInsets.zero),
+          backgroundColor: MaterialStatePropertyAll(Colors.transparent),
+          overlayColor: MaterialStatePropertyAll(Colors.transparent),
+        ),
+        child: Text(
+          text,
+          style: textstyle,
+        ));
+  }
+}
+
+class CommonAppBar {
+  static Widget commonAppbar() {
+    return AppBar(
+      title: Text("Address"),
+      leading: CircleAvatar(
+        backgroundColor: AppColor.textFieldGrey,
+        child: Icon(Icons.arrow_back_ios_new_rounded),
+        radius: 40,
+
+      ),
+    );
+  }
+}
