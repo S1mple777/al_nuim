@@ -3,6 +3,8 @@ import 'package:al_nuim/utility/appTheme.dart';
 import 'package:al_nuim/utility/common_textfield.dart';
 import 'package:al_nuim/utility/size_config.dart';
 import 'package:al_nuim/utility/string_ext.dart';
+import 'package:al_nuim/view/dashboard_screens/home_screen.dart';
+import 'package:al_nuim/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -16,7 +18,6 @@ class DashBoard extends StatefulWidget {
 class _DashBoardState extends State<DashBoard> {
   @override
   Widget build(BuildContext context) {
-    
     return DefaultTabController(
       length: context.watch<DashBoardController>().homeList.length,
       child: SafeArea(
@@ -61,42 +62,12 @@ class _DashBoardState extends State<DashBoard> {
               ),
             ),
           ),
-          appBar: AppBar(
-            automaticallyImplyLeading: false,
-            centerTitle: false,
-            title: Image.asset(
-              "al_nuim".png,
-              width: 161,
-              height: 31,
-            ),
-            actions: [
-              GestureDetector(
-                onTap: () {},
-                child: Image.asset("bell".png),
-              ),
-              hSize(20)
-            ],
-          ),
-          body: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: SizedBox(
-                  height: 48,
-                  child: CommonTextFormField(
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Image.asset("search".png),
-                    ),
-                    labelText: "Search Anything...",
-                    fillColor: false,
-                    radius: 20.0,
-                    colors: Theme.of(context).primaryColor,
-                  ),
-                ),
-              ),
-            ],
-          ),
+          body: TabBarView(children: [
+            HomeScreen(),
+            Container(),
+            Container(),
+            ProfileScreen()
+          ]),
         ),
       ),
     );

@@ -50,6 +50,9 @@ class ProfileScreen extends StatelessWidget {
           })
     ];
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+      ),
       body: SizedBox(
         width: double.infinity,
         child: Column(

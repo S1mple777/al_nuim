@@ -71,7 +71,7 @@ class MyApp extends StatelessWidget {
               seedColor: const Color.fromARGB(255, 182, 151, 79)),
           useMaterial3: true,
         ),
-        home: const ProfileScreen(),
+        home: SigninScreen(),
       ),
     );
   }
